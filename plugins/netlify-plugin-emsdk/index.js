@@ -11,7 +11,7 @@ const EMSDK_VERSION = "6.0.9";
 const plugin = {
   onPreBuild: async ({ utils, netlifyConfig }) => {
     const response = await fetch(
-      `https://github.com/emscripten/emsdk/archive/${EMSDK_VERSION}.zip`,
+      `https://github.com/emscripten-core/emsdk/archive/${EMSDK_VERSION}.zip`,
     );
 
     if (!response.ok || response.body === null) {
