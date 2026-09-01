@@ -26,7 +26,7 @@ const plugin = {
     );
 
     await utils.run.command(
-      `unzip -- /opt/buildhome/emsdk-${EMSDK_VERSION}.zip`,
+      `unzip -d /opt/buildhome -- /opt/buildhome/emsdk-${EMSDK_VERSION}.zip`,
     );
     await utils.run.command(`rm /opt/buildhome/emsdk-${EMSDK_VERSION}.zip`);
     await utils.run.command(
