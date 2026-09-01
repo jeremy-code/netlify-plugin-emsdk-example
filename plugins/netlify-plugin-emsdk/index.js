@@ -18,7 +18,7 @@ const plugin = {
       utils.build.failBuild("Could not fetch Emscripten");
     }
 
-    await response.body!.pipeTo(
+    await response.body.pipeTo(
       Writable.toWeb(
         createWriteStream(`/opt/buildhome/emsdk-${EMSDK_VERSION}.zip`),
       ),
