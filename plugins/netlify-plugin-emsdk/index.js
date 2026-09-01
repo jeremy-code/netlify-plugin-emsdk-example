@@ -15,6 +15,7 @@ const plugin = {
     );
 
     if (!response.ok || response.body === null) {
+      console.log(response);
       utils.build.failBuild("Could not fetch Emscripten");
     }
 
