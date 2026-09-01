@@ -25,9 +25,13 @@ const plugin = {
       ),
     );
 
-    await utils.run.command(`unzip -- ./emsdk-${EMSDK_VERSION}.zip`);
-    await utils.run.command(`rm ./emsdk-${EMSDK_VERSION}.zip`);
-    await utils.run.command(`mv ./emsdk-${EMSDK_VERSION} ./.emsdk`);
+    await utils.run.command(
+      `unzip -- /opt/buildhome/emsdk-${EMSDK_VERSION}.zip`,
+    );
+    await utils.run.command(`rm /opt/buildhome/emsdk-${EMSDK_VERSION}.zip`);
+    await utils.run.command(
+      `mv /opt/buildhome/emsdk-${EMSDK_VERSION} /opt/buildhome/.emsdk`,
+    );
     const emsdkFolder = "/opt/buildhome/.emsdk";
 
     netlifyConfig.build.environment["EMSDK"] = emsdkFolder;
