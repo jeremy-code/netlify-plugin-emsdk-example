@@ -1,10 +1,14 @@
-import type { NetlifyPlugin } from "@netlify/build";
 import { createWriteStream } from "node:fs";
 import { Writable } from "node:stream";
 
+/** @import { NetlifyPlugin } from "@netlify/build" */
+
 const EMSDK_VERSION = "6.0.9";
 
-const plugin: NetlifyPlugin = {
+/**
+ * @satisfies {NetlifyPlugin}
+ */
+const plugin = {
   onPreBuild: async ({ utils, netlifyConfig }) => {
     const response = await fetch(
       `https://github.com/emscripten/emsdk/archive/${EMSDK_VERSION}.zip`,
