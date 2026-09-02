@@ -20,18 +20,12 @@ const plugin = {
     }
 
     await response.body.pipeTo(
-      Writable.toWeb(
-        createWriteStream(`/opt/buildhome/emsdk-${EMSDK_VERSION}.zip`),
-      ),
+      Writable.toWeb(createWriteStream(`/tmp/emsdk-${EMSDK_VERSION}.zip`)),
     );
 
-    await utils.run.command(
-      `unzip -d /opt/buildhome -- /opt/buildhome/emsdk-${EMSDK_VERSION}.zip`,
-    );
-    await utils.run.command(`rm /opt/buildhome/emsdk-${EMSDK_VERSION}.zip`);
-    await utils.run.command(
-      `mv /opt/buildhome/emsdk-${EMSDK_VERSION} /opt/buildhome/.emsdk`,
-    );
+    await utils.run("unzip", ["-d", "/opt/buildhome", `/tmp/emsdk-${EMSDK_VERSION}.zip`]);
+    await utils.run("mv", [`/opt/buildhome/emsdk-${EMSDK_VERSION}`, "/opt/buildhome/.emsdk"]);
+
     const emsdkFolder = "/opt/buildhome/.emsdk";
 
     netlifyConfig.build.environment["EMSDK"] = emsdkFolder;
@@ -39,7 +33,15 @@ const plugin = {
     await utils.run(`${emsdkFolder}/emsdk`, ["update"]);
     await utils.run(`${emsdkFolder}/emsdk`, ["install", EMSDK_VERSION]);
     await utils.run(`${emsdkFolder}/emsdk`, ["activate", EMSDK_VERSION]);
-    await utils.run(`${emsdkFolder}/emsdk`, ["install", EMSDK_VERSION]);
+
+    const envPromise = utils.run(`${emsdkFolder}/emsdk`, ["construct_env"], {
+      stdio: "pipe",
+      stdout: "pipe",
+    });
+
+    (await envPromise).stdout.on("data", (data) => {
+      console.log(`Received chunk ${data}`);
+    });
   },
 };
 
