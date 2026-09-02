@@ -6,7 +6,7 @@ import { Writable } from "node:stream";
 const EMSDK_VERSION = "6.0.9";
 
 // https://github.com/emscripten-core/setup-emsdk/blob/0822153d7a5488b70a269cfa0a631b2a86ab4da2/src/matchers.ts#L2
-const ENV_REGEX = /(\S+) = (.+)/;
+const ENV_REGEX = /(\S+)=(.+);/;
 
 /**
  * @satisfies {NetlifyPlugin}
