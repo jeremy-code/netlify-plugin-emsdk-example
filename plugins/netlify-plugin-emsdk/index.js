@@ -14,7 +14,7 @@ const ENV_REGEX = /(\S+)=(.+);/;
 const plugin = {
   onPreBuild: async ({ utils, netlifyConfig }) => {
     const response = await fetch(
-      `https://github.com/emscripten-core/emsdk/archive/${EMSDK_VERSION}.zip`,
+      `https://github.com/emscripten-core/emsdk/archive/${EMSDK_VERSION}.tar.gz`,
     );
 
     if (!response.ok || response.body === null) {
@@ -23,14 +23,14 @@ const plugin = {
     }
 
     await response.body.pipeTo(
-      Writable.toWeb(createWriteStream(`/tmp/.emsdk.zip`)),
+      Writable.toWeb(createWriteStream(`/tmp/.emsdk.tar.gz`)),
     );
 
     await utils.run("mkdir", ["-p", "/opt/buildhome/.emsdk"]);
     await utils.run("tar", [
       "-x",
       "-f",
-      "/tmp/.emsdk.zip",
+      "/tmp/.emsdk.tar.gz",
       "--strip-components=1",
       "--directory",
       "/opt/buildhome/.emsdk",
