@@ -1,4 +1,5 @@
 import { createWriteStream } from "node:fs";
+import { mkdir } from "node:fs/promises";
 import { Writable } from "node:stream";
 
 /** @import { NetlifyPlugin } from "@netlify/build" */
@@ -18,7 +19,6 @@ const plugin = {
     );
 
     if (!response.ok || response.body === null) {
-      console.log(response);
       utils.build.failBuild("Could not fetch Emscripten");
     }
 
@@ -26,16 +26,16 @@ const plugin = {
       Writable.toWeb(createWriteStream(`/tmp/.emsdk.tar.gz`)),
     );
 
-    await utils.run("mkdir", ["-p", "/opt/buildhome/.emsdk"]);
-    await utils.run("tar", [
-      "-x",
-      "-f",
-      "/tmp/.emsdk.tar.gz",
-      "--strip-components=1",
-      "--directory",
-      "/opt/buildhome/.emsdk",
-    ]);
     const emsdkFolder = "/opt/buildhome/.emsdk";
+    await mkdir(emsdkFolder, { recursive: true });
+    await utils.run("tar", [
+      "--extract",
+      "--file",
+      "/tmp/.emsdk.tar.gz",
+      "--directory",
+      emsdkFolder,
+      "--strip-components=1",
+    ]);
 
     netlifyConfig.build.environment["EMSDK"] = emsdkFolder;
 
@@ -50,7 +50,6 @@ const plugin = {
 
     env.stdout.split("\n").map((line) => {
       const envResult = ENV_REGEX.exec(line);
-      console.log({ envResult, line });
       if (envResult !== null) {
         netlifyConfig.build.environment[envResult[1]] = envResult[2];
       }
