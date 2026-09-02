@@ -23,8 +23,15 @@ const plugin = {
       Writable.toWeb(createWriteStream(`/tmp/emsdk-${EMSDK_VERSION}.zip`)),
     );
 
-    await utils.run("unzip", ["-d", "/opt/buildhome", `/tmp/emsdk-${EMSDK_VERSION}.zip`]);
-    await utils.run("mv", [`/opt/buildhome/emsdk-${EMSDK_VERSION}`, "/opt/buildhome/.emsdk"]);
+    await utils.run("unzip", [
+      "-d",
+      "/opt/buildhome",
+      `/tmp/emsdk-${EMSDK_VERSION}.zip`,
+    ]);
+    await utils.run("mv", [
+      `/opt/buildhome/emsdk-${EMSDK_VERSION}`,
+      "/opt/buildhome/.emsdk",
+    ]);
 
     const emsdkFolder = "/opt/buildhome/.emsdk";
 
@@ -35,7 +42,6 @@ const plugin = {
     await utils.run(`${emsdkFolder}/emsdk`, ["activate", EMSDK_VERSION]);
 
     const envPromise = utils.run(`${emsdkFolder}/emsdk`, ["construct_env"], {
-      stdio: "pipe",
       stdout: "pipe",
     });
 
