@@ -8,10 +8,17 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "./scripts/build.sh && tsc -b && vite build",
     "lint": "oxlint",
     "format": "oxfmt",
     "preview": "vite preview"
+  },
+  "imports": {
+    "#main": {
+      "types": "./pkg/main.d.ts",
+      "default": "./pkg/main.js"
+    },
+    "#main/main.wasm": "./pkg/main.wasm"
   },
   "dependencies": {
     "react": "^19.2.8",
