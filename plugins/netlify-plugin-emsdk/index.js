@@ -44,10 +44,8 @@ const plugin = {
     const envPromise = utils.run(`${emsdkFolder}/emsdk`, ["construct_env"], {
       stdout: "pipe",
     });
-
-    (await envPromise).stdout.on("data", (data) => {
-      console.log(`Received chunk ${data}`);
-    });
+    console.log(envPromise);
+    console.log(await envPromise);
   },
 };
 
