@@ -2,3 +2,5 @@ allowBuilds:
   esbuild: true
   sharp: true
   unix-dgram: true
+minimumReleaseAgeExclude:
+  - netlify-plugin-emsdk@0.0.0

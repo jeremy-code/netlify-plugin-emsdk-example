@@ -3,4 +3,4 @@ publish = "dist"
 command = "pnpm run build"
 
 [[plugins]]
-package = "/plugins/netlify-plugin-emsdk"
+package = "netlify-plugin-emsdk"
