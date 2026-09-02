@@ -2,28 +2,21 @@
   "name": "netlify-plugin-emsdk-example",
   "version": "0.0.0",
   "description": "",
-  "type": "module",
   "keywords": [],
-  "author": "",
   "license": "ISC",
-  "devEngines": {
-    "packageManager": {
-      "name": "pnpm",
-      "version": "11.24.0",
-      "onFail": "download"
-    }
-  },
+  "author": "",
+  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "oxlint",
+    "format": "oxfmt",
     "preview": "vite preview"
   },
   "dependencies": {
     "react": "^19.2.8",
     "react-dom": "^19.2.8"
   },
-  "packageManager": "pnpm@11.24.0",
   "devDependencies": {
     "@netlify/build": "^36.4.2",
     "@netlify/vite-plugin": "^3.0.1",
@@ -31,8 +24,17 @@
     "@types/react": "^19.2.18",
     "@types/react-dom": "^19.2.5",
     "@vitejs/plugin-react": "^6.1.1",
+    "oxfmt": "^0.65.0",
     "oxlint": "^1.80.0",
     "typescript": "^7.0.2",
     "vite": "^8.2.2"
-  }
+  },
+  "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "version": "11.24.0",
+      "onFail": "download"
+    }
+  },
+  "packageManager": "pnpm@11.24.0"
 }
