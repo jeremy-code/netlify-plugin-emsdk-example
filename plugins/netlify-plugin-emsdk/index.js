@@ -51,6 +51,7 @@ const plugin = {
 
     env.stdout.split("\n").map((line) => {
       const envResult = ENV_REGEX.exec(line);
+      console.log({ envResult, line });
       if (envResult !== null) {
         utils.netlifyConfig.environment[envResult[1]] = envResult[2];
       }
