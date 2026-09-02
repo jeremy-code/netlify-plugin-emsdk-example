@@ -5,6 +5,9 @@ import { Writable } from "node:stream";
 
 const EMSDK_VERSION = "6.0.9";
 
+// https://github.com/emscripten-core/setup-emsdk/blob/0822153d7a5488b70a269cfa0a631b2a86ab4da2/src/matchers.ts#L2
+const ENV_REGEX = /(\S+) = (.+)/;
+
 /**
  * @satisfies {NetlifyPlugin}
  */
@@ -41,14 +44,17 @@ const plugin = {
     await utils.run(`${emsdkFolder}/emsdk`, ["install", EMSDK_VERSION]);
     await utils.run(`${emsdkFolder}/emsdk`, ["activate", EMSDK_VERSION]);
 
-    const envPromise = utils.run(`${emsdkFolder}/emsdk`, ["construct_env"], {
-      stdout: "pipe",
+    const env = await utils.run(`${emsdkFolder}/emsdk`, ["construct_env"]);
+    if (env.stdout === "") {
+      utils.build.failBuild("Somehow, an env was unable to be constructed");
+    }
+
+    env.stdout.split("\n").map((line) => {
+      const envResult = ENV_REGEX.exec(line);
+      if (envResult !== null) {
+        utils.netlifyConfig.environment[envResult[1]] = envResult[2];
+      }
     });
-    console.log(envPromise);
-    envPromise.stdout.on("data", (data) => {
-      console.log(`Received chunk ${data}`);
-    });
-    console.log(await envPromise);
   },
 };
 
