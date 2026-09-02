@@ -23,19 +23,18 @@ const plugin = {
     }
 
     await response.body.pipeTo(
-      Writable.toWeb(createWriteStream(`/tmp/emsdk-${EMSDK_VERSION}.zip`)),
+      Writable.toWeb(createWriteStream(`/tmp/.emsdk.zip`)),
     );
 
-    await utils.run("unzip", [
-      "-d",
-      "/opt/buildhome",
-      `/tmp/emsdk-${EMSDK_VERSION}.zip`,
-    ]);
-    await utils.run("mv", [
-      `/opt/buildhome/emsdk-${EMSDK_VERSION}`,
+    await utils.run("mkdir", ["-p", "/opt/buildhome/.emsdk"]);
+    await utils.run("tar", [
+      "-x",
+      "-f",
+      "/tmp/.emsdk.zip",
+      "--strip-components=1",
+      "--directory",
       "/opt/buildhome/.emsdk",
     ]);
-
     const emsdkFolder = "/opt/buildhome/.emsdk";
 
     netlifyConfig.build.environment["EMSDK"] = emsdkFolder;
