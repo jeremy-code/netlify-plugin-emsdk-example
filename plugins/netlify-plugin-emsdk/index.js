@@ -45,6 +45,9 @@ const plugin = {
       stdout: "pipe",
     });
     console.log(envPromise);
+    envPromise.stdout.on("data", (data) => {
+      console.log(`Received chunk ${data}`);
+    });
     console.log(await envPromise);
   },
 };
