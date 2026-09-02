@@ -1,0 +1,13 @@
+{
+  "name": "netlify-plugin-emsdk",
+  "version": "0.0.0",
+  "description": "",
+  "type": "module",
+  "exports": {
+    ".": "./index.js",
+    "./manifest.yml": "./manifest.yml"
+  },
+  "devDependencies": {
+    "@netlify/build": "^36.4.2"
+  }
+}
