@@ -3,7 +3,7 @@ import { secureHeaders } from "hono/secure-headers";
 import { logger } from "hono/logger";
 import { every } from "hono/combine";
 import mainFactory from "#main";
-import mainWasm from "#main/main.wasm?url";
+import mainWasm from "#main/main.wasm?module";
 
 import js from "@shikijs/langs/javascript";
 import nord from "@shikijs/themes/nord";
