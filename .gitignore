@@ -11,6 +11,7 @@ node_modules
 dist
 dist-ssr
 pkg
+.output
 *.local
 
 # Editor directories and files
