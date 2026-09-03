@@ -16,7 +16,7 @@ COMPILE_FLAGS=(
   -g0 # Do not generate debug information
   --minify 0 # Do not minify JavaScript glue code
   --emit-tsd "${OUTPUT_DIR}/main.d.ts"
-  -sENVIRONMENT="web"
+  -sENVIRONMENT="web,node"
   -sSTACK_SIZE=$((2 ** 16))
   -sINCOMING_MODULE_JS_API="[]"
   -sFILESYSTEM=0

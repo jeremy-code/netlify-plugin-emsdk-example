@@ -6,13 +6,6 @@
   "license": "ISC",
   "author": "",
   "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "./scripts/build.sh && tsc -b && vite build",
-    "lint": "oxlint",
-    "format": "oxfmt",
-    "preview": "vite preview"
-  },
   "imports": {
     "#main": {
       "types": "./pkg/main.d.ts",
@@ -20,18 +13,20 @@
     },
     "#main/main.wasm": "./pkg/main.wasm"
   },
+  "scripts": {
+    "dev": "vite",
+    "build": "./scripts/build.sh && tsc -b && vite build",
+    "lint": "oxlint",
+    "format": "oxfmt",
+    "preview": "vite preview"
+  },
   "dependencies": {
-    "netlify-plugin-emsdk": "^0.0.0",
-    "react": "^19.2.8",
-    "react-dom": "^19.2.8"
+    "hono": "^4.13.5",
+    "netlify-plugin-emsdk": "^0.0.0"
   },
   "devDependencies": {
-    "@netlify/build": "^36.4.2",
-    "@netlify/vite-plugin": "^3.0.1",
     "@types/node": "^26.4.0",
-    "@types/react": "^19.2.18",
-    "@types/react-dom": "^19.2.5",
-    "@vitejs/plugin-react": "^6.1.1",
+    "nitro": "3.0.260610-beta",
     "oxfmt": "^0.65.0",
     "oxlint": "^1.80.0",
     "typescript": "^7.0.2",

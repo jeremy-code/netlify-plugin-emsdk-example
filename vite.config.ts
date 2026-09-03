@@ -1,8 +1,7 @@
-import react from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
-import netlify from "@netlify/vite-plugin";
+import { nitro } from "nitro/vite";
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react(), netlify()],
+  plugins: [nitro()],
 });
