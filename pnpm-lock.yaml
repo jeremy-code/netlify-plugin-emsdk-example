@@ -208,8 +208,8 @@ importers:
   .:
     dependencies:
       netlify-plugin-emsdk:
-        specifier: ^0.0.2
-        version: 0.0.2
+        specifier: ^0.0.3
+        version: 0.0.3
       react:
         specifier: ^19.2.8
         version: 19.2.8
@@ -2925,8 +2925,8 @@ packages:
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
 
-  netlify-plugin-emsdk@0.0.2:
-    resolution: {integrity: sha512-tNsXn/dNIehpN1QSDLqgw/MjCs4W6kzJchlGFXmSKXOaXxuottx/N/Dg+gYLquYXEgHel0bTo9Pgj7E2eTfbhw==}
+  netlify-plugin-emsdk@0.0.3:
+    resolution: {integrity: sha512-6gEIw5bU8UDDhQ3bXuT7d854MxRKU97Byn7KulqBZn9omObwK5UjW8NM6eWt5C/lHkv3xUs0Oo7QP3R9qiok3Q==}
 
   netlify-redirector@0.5.0:
     resolution: {integrity: sha512-4zdzIP+6muqPCuE8avnrgDJ6KW/2+UpHTRcTbMXCIRxiRmyrX+IZ4WSJGZdHPWF3WmQpXpy603XxecZ9iygN7w==}
@@ -6574,7 +6574,7 @@ snapshots:
 
   nanoid@3.3.18: {}
 
-  netlify-plugin-emsdk@0.0.2: {}
+  netlify-plugin-emsdk@0.0.3: {}
 
   netlify-redirector@0.5.0: {}
 
